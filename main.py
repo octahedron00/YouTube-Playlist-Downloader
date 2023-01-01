@@ -10,7 +10,7 @@ for i in p.video_urls[:10]:
     print(i)
 
 # Downloading
-for i in p.video_urls:
+for num, i in enumerate(p.video_urls):
     # use_oauth : for download YouTube_Music-only, if you have YouTube Music account.
     yt = YouTube(i, use_oauth=True)
 
@@ -36,3 +36,5 @@ for i in p.video_urls:
     print(new)
     print(subprocess.run(f'ffmpeg -i "{new}.webm" -codec:a libmp3lame -b:a 320k "{new}.mp3"', shell=True,
                          capture_output=True).stdout)
+    print(f"{num+1}/{len(p.video_urls)} = {round((num+1)/len(p.video_urls)*100, 2)}% finished.")
+    print("\n")
